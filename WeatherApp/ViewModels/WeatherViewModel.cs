@@ -8,12 +8,12 @@ namespace WeatherApp.ViewModels
 {
     public class WeatherViewModel
     {
+        public string CityName { get; set; }
+        public string CityCountryCode { get; set; }
         public double? Temp { get; set; }
         public double? Pressure { get; set; }
         public double? RainVolume { get; set; }
         public double? WindSpeed { get; set; }
-        public string CityName { get; set; }
-        public string CityCountryCode { get; set; }
         public DateTime? Date { get; set; }
 
         public WeatherViewModel()

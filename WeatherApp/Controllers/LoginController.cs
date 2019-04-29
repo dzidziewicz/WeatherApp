@@ -19,9 +19,9 @@ namespace WeatherApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var token = _loginService.Login(credentials.Username, credentials.Password);
-                if (token != null)
-                    return Ok(token);
+                var user = _loginService.Login(credentials.Username, credentials.Password);
+                if (user != null)
+                    return Ok(new UserViewModel(user));
             }
             return BadRequest();
         }

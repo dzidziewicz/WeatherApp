@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +11,7 @@ using WeatherApp.ViewModels;
 namespace WeatherApp.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class WeatherController : Controller
     {
         private readonly IRepository<Weather> _repository;
@@ -25,7 +24,6 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get()
         {
             return Ok(await _repository.GetAll().Select(w => new WeatherViewModel(w)).ToListAsync());
@@ -42,6 +40,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add([FromBody] WeatherViewModel weatherVm)
         {
             if (ModelState.IsValid)

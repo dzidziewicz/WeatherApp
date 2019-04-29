@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-login {
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: white;
+    height: fit-content;
+    border-radius: 5px;
+    border-top: 1px solid #d8dee2;
+}
+
+.paper-content {
+    padding: 20px 40px;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.error {
+    color: red !important;
+}

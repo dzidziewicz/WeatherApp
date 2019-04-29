@@ -1,0 +1,17 @@
+ .root {
+     width: 100%;
+ }
+
+ .table {
+     min-width: 1020px;
+ }
+
+ .tableWrapper {
+     overflow: auto;
+ }
+
+ .table-nav {
+     display: flex;
+     justify-content: flex-end;
+     width: 100%;
+ }

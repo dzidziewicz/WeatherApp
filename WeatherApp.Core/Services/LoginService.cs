@@ -23,7 +23,7 @@ namespace WeatherApp.Core.Services
             _appSettings = options.Value;
         }
 
-        public string Login(string username, string password)
+        public User Login(string username, string password)
         {
             // normally users would be in a database and passwords wouldn't be kept as plain text
             var user = _registeredUsers.FirstOrDefault(u => u.Username == username && u.Password == password);
@@ -31,7 +31,9 @@ namespace WeatherApp.Core.Services
             if (user == null)   // credentials are invalid
                 return null;
 
-            return GetToken(user);
+            user.Token = GetToken(user);
+
+            return user;
         }
 
         private string GetToken(User user)
