@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WeatherApp.DbContext;
 
 namespace WeatherApp
 {
@@ -22,6 +24,10 @@ namespace WeatherApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+
+            services.AddDbContext<AppDbContext>(builder =>
+                builder.UseSqlServer(Configuration["ConnectionString"]));
+            
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
