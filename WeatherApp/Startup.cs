@@ -1,3 +1,5 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,10 +8,14 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using WeatherApp.Core.DbContext;
 using WeatherApp.Core.Model;
+using WeatherApp.Core.Options;
 using WeatherApp.Core.Repositories;
 using WeatherApp.Core.Repositories.Interfaces;
+using WeatherApp.Core.Services;
+using WeatherApp.Core.Services.Interfaces;
 
 namespace WeatherApp
 {
@@ -33,7 +39,26 @@ namespace WeatherApp
 
             services.AddTransient<IRepository<Weather>, WeatherRepository>();
             services.AddTransient<IRepository<City>, Repository<City>>();
-            
+
+            services.AddTransient<ILoginService, LoginService>();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration.GetSection("AppSettings").GetValue<string>("JwtIssuer"),
+                        ValidAudience = Configuration.GetSection("AppSettings").GetValue<string>("JwtAudience"),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings").GetValue<string>("Secret")))
+                    };
+                });
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -57,6 +82,8 @@ namespace WeatherApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

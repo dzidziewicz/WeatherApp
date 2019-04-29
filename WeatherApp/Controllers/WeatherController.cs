@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WeatherApp.Core.Model;
@@ -20,6 +21,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<Weather>> Get()
         {
             return await _repository.GetAll().ToListAsync();
