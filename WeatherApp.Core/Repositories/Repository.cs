@@ -20,6 +20,7 @@ namespace WeatherApp.Core.Repositories
         public virtual async Task Add(TType entity)
         {
             await _dbSet.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
         public virtual async Task<TType> GetById(int id)

@@ -38,9 +38,10 @@ namespace WeatherApp
                 builder.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddTransient<IRepository<Weather>, WeatherRepository>();
-            services.AddTransient<IRepository<City>, Repository<City>>();
+            services.AddTransient<IRepository<City>, Repository<City>>(); 
 
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IWeatherService, WeatherService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
