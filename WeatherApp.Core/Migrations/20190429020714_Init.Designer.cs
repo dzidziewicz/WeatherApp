@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WeatherApp.DbContext;
+using WeatherApp.Core.DbContext;
 
-namespace WeatherApp.Migrations
+namespace WeatherApp.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190429020714_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace WeatherApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WeatherApp.Model.City", b =>
+            modelBuilder.Entity("WeatherApp.Core.Model.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,7 +38,7 @@ namespace WeatherApp.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("WeatherApp.Model.Weather", b =>
+            modelBuilder.Entity("WeatherApp.Core.Model.Weather", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,9 +63,9 @@ namespace WeatherApp.Migrations
                     b.ToTable("Weathers");
                 });
 
-            modelBuilder.Entity("WeatherApp.Model.Weather", b =>
+            modelBuilder.Entity("WeatherApp.Core.Model.Weather", b =>
                 {
-                    b.HasOne("WeatherApp.Model.City", "City")
+                    b.HasOne("WeatherApp.Core.Model.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);

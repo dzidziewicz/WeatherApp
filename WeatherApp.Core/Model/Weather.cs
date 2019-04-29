@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WeatherApp.Model
+namespace WeatherApp.Core.Model
 {
     public class Weather
     {

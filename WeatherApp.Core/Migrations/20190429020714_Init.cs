@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WeatherApp.Migrations
+namespace WeatherApp.Core.Migrations
 {
     public partial class Init : Migration
     {

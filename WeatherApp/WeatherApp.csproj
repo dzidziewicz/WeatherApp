@@ -29,12 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190429000313_Init.cs" />
-    <Compile Remove="Migrations\20190429000313_Init.Designer.cs" />
-    <Compile Remove="Migrations\20190429000940_Init.cs" />
-    <Compile Remove="Migrations\20190429000940_Init.Designer.cs" />
-    <Compile Remove="Migrations\20190429001650_Init.cs" />
-    <Compile Remove="Migrations\20190429001650_Init.Designer.cs" />
+    <ProjectReference Include="..\WeatherApp.Core\WeatherApp.Core.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

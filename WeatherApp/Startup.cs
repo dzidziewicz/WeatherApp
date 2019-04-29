@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WeatherApp.DbContext;
+using WeatherApp.Core.DbContext;
+using WeatherApp.Core.Model;
+using WeatherApp.Core.Repositories;
+using WeatherApp.Core.Repositories.Interfaces;
 
 namespace WeatherApp
 {
@@ -27,6 +30,9 @@ namespace WeatherApp
 
             services.AddDbContext<AppDbContext>(builder =>
                 builder.UseSqlServer(Configuration["ConnectionString"]));
+
+            services.AddTransient<IRepository<Weather>, WeatherRepository>();
+            services.AddTransient<IRepository<City>, Repository<City>>();
             
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
