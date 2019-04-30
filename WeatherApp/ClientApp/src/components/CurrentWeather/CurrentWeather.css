@@ -1,0 +1,32 @@
+.inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button {
+    height: fit-content;
+    display: flex;
+    align-self: flex-end;
+}
+
+.upload {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.upload-button {
+    width: fit-content;
+}
+
+.upload-button-box {
+    margin-top: 20px;
+}

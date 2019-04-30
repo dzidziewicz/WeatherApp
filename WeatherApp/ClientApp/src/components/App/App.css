@@ -1,0 +1,13 @@
+.content {
+    max-width: 1352px;
+    margin: 100px auto 0 auto;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+.placeholder-div {
+    width: 68px;
+    height: 48px;
+}
