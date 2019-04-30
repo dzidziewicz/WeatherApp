@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Home } from '../Home/Home';
-import { FetchData } from '../FetchData';
-import { Counter } from '../Counter';
 import { Login } from '../Login/Login';
 import WeatherTable from '../WeatherTable/WeatherTable';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
@@ -42,8 +40,10 @@ class App extends Component {
         super(props);
         // normally token would be kept in redux store
         this.state = { user: null, openDrawer: false, }
+        
+        // redirect to login page if user in not logged in
         if (this.state.user === null && history.location.pathname !== '/login')
-          history.push('/login');
+            history.push('/login');
     }
 
     onSignInSuccess = (user) => {
@@ -59,6 +59,7 @@ class App extends Component {
     render() {
         const classes = this.props.classes;
 
+        // labels and links for side menu
         let labels = [
             { displayName: "Home", path: "/" },
             { displayName: "Archival weather data", path: "/archival" },
@@ -82,15 +83,13 @@ class App extends Component {
                             }
                             <Typography variant="h6" color="inherit" className={classes.grow}>
                                 Weather app
-				      </Typography>
+				            </Typography>
                         </Toolbar>
                         <Menu openMenu={this.state.openDrawer} onClose={this.toggleDrawer} labels={labels} />
                     </AppBar>
                 </div>
                 <div className="content">
                     <Route exact path='/' component={Home} />
-                    <Route path='/counter' component={Counter} />
-                    <Route path='/fetchdata' component={FetchData} />
                     <Route path='/login' render={(props) => <Login {...props} onSignInSuccess={this.onSignInSuccess} />} />
                     <Route path='/archival' render={(props) => <WeatherTable {...props} user={this.state.user} />} />
                     <Route path='/new' render={(props) => <CurrentWeather {...props} user={this.state.user} />} />

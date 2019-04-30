@@ -5,20 +5,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Tooltip from '@material-ui/core/Tooltip';
 
-// export interface IRowDescription {
-//     id: string,
-//     disablePadding: boolean,
-//     label: string
-// };
-
-// interface IProps {
-//     order: "asc" | "desc" | undefined,
-//     orderBy: string,
-//     rowCount: number,
-//     rows: IRowDescription[],
-//     onRequestSort: any,
-// }
-
 export default class CustomTableHead extends Component {
     createSortHandler = (property) => (event) => {
         this.props.onRequestSort(event, property);

@@ -23,6 +23,7 @@ class WeatherTable extends Component {
 
     constructor(props) {
         super(props);
+        
         const tableHeadLabels = ["City",
             "CountryCode",
             "Temperature [C]",
@@ -30,7 +31,7 @@ class WeatherTable extends Component {
             "Rain volume [mm]",
             "Wind speed [m/s]",
             "Date"];
-            
+
         this.state = {
             order: 'desc',
             orderBy: 'City',
@@ -44,8 +45,6 @@ class WeatherTable extends Component {
     };
 
     componentDidMount() {
-        console.log('didmount')
-
         if (this.props.user)
             this.getRecords();
     }
