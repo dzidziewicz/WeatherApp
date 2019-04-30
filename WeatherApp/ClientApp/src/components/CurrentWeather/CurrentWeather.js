@@ -51,7 +51,6 @@ class CurrentWeather extends Component {
                         cityCountryCode: data.sys.country
                     }
                 });
-                console.log('new data', this.state.data);
             })
             .catch(error => {
                 console.log('Error while fetching current weather', error);
@@ -83,7 +82,7 @@ class CurrentWeather extends Component {
                         <Typography variant="h6">Temperature  <i className="fas fa-temperature-high"></i>  {this.state.data.temp} deg. C</Typography>
                     </div>
                     <div className="row">
-                        <Typography variant="h6">Pressure  <img src="./../../measure.png" height="24px" alt=""/>  {this.state.data.pressure} hPa</Typography>
+                        <Typography variant="h6">Pressure  <img src="./../../measure.png" height="24px" alt="" />  {this.state.data.pressure} hPa</Typography>
                     </div>
                     <div className="row">
                         <Typography variant="h6">Wind  <i className="fas fa-wind"></i>  {this.state.data.windSpeed} m/s</Typography>
